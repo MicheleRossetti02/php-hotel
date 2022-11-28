@@ -9,7 +9,6 @@
 // Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto (es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore)
 
 $hotels = [
-
     [
         'name' => 'Hotel Belvedere',
         'description' => 'Hotel Belvedere Descrizione',
@@ -48,6 +47,7 @@ $hotels = [
 
 ];
 ?>
+
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -65,9 +65,24 @@ $hotels = [
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css' integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==' crossorigin='anonymous' referrerpolicy='no-referrer'>
     <link rel='stylesheet' href=''>
     <style>
-        .output {
+        .row {
 
+            /* flex-direction: column; */
+            flex-wrap: wrap;
+        }
+
+        .output {
+            display: flex;
             flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: end;
+        }
+
+        .input {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .red {
@@ -86,29 +101,32 @@ $hotels = [
     <header id="site_header"></header>
     <!-- /#site_header -->
     <main id="site_main">
+
         <div class="container">
             <div class="row">
-                <div class="col-2 output d-flex">
-                    <h4>name</h4>
-                    <h4>description</h4>
-                    <h4>vote</h4>
-                    <h4>distance to center</h4>
+                <?php foreach ($hotels as $hotel) { ?>
 
-                </div>
-                <div class="col">
-                    <h3><?= $hotel['name'] ?> </h3>
-                    <h3><?= $hotel['description'] ?> </h3>
-                    <div class="parking">
-                        <?php if ($hotel['parking']) { ?>
-                            <h3 class="green">avaible</h3>
-                        <?php } else { ?>
-                            <h3 class="red">not avaible</h3>
-                        <?php } ?>
-
+                    <div class="col-2 output d-flex mt-4">
+                        <h4>name</h4>
+                        <h4>description</h4>
+                        <h4>vote</h4>
+                        <h4>distance to center</h4>
                     </div>
-                    <h3><?= $hotel['distance_to_center'] ?> </h3>
+                    <div class="col-10 d-flex input mt-4">
+                        <h3><?php echo $hotel['name']; ?> </h3>
+                        <h3><?php echo $hotel['description']; ?> </h3>
+                        <div class="parking">
+                            <?php if ($hotel['parking']) { ?>
+                                <h3 class="green">avaible</h3>
+                            <?php } else { ?>
+                                <h3 class="red">not avaible</h3>
+                            <?php } ?>
 
-                </div>
+                        </div>
+                        <h3><?= $hotel['distance_to_center'] ?> </h3>
+                    </div>
+
+                <?php  }; ?>
             </div>
         </div>
     </main>
@@ -118,7 +136,7 @@ $hotels = [
 
 
     <script src='https://cdn.jsdelivr.net/npm/vue@3.2.41/dist/vue.global.min.js'></script>
-    <script src=''></script>
+    <!-- <script src=''> </script> -->
 </body>
 
 </html>
