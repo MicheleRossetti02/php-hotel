@@ -103,6 +103,18 @@ $hotels = [
     <main id="site_main">
 
         <div class="container">
+            <!-- <form class=" mt-5" action="index.php" method="GET">
+                <div class="form-check form-check-inline">
+
+                    <label class="form-check-label" for="vote">vote filter</label>
+                    <input class="form-control mb-3" type="number" id="vote" name="vote" placeholder="vote filter">
+
+                    <input class="form-check-input" type="checkbox" id="park" name="park" value="filter">
+                    <label class="form-check-label" for="park">filter for park</label>
+                </div>
+                <button class="btn btn-primary" type="submit">filter</button>
+
+            </form> -->
             <div class="row">
                 <?php foreach ($hotels as $hotel) { ?>
 
@@ -124,9 +136,11 @@ $hotels = [
 
                         </div>
                         <h3><?= $hotel['distance_to_center'] ?> </h3>
+
                     </div>
 
                 <?php  }; ?>
+
             </div>
         </div>
     </main>
